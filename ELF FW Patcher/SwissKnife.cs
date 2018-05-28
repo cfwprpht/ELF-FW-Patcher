@@ -189,7 +189,7 @@ namespace SwissKnife {
         public static bool Contains<T>(this T[] source, T[] range) {
             if (source == null) throw new FormatException("Null Refernce", new Exception("The Array to check for a value existens is not Initialized."));
             for (int i = 0; i < source.Length; i++) {
-                if (source[i].Equals(range[i])) {
+                if (source[i].Equals(range[0])) {
                     if ((source.Length - i) >= range.Length) {
                         int match = 1;
                         for (int j = 1; j < range.Length; j++) {

@@ -30,16 +30,16 @@
             this.buttonSelect = new System.Windows.Forms.Button();
             this.textBoxInput = new System.Windows.Forms.TextBox();
             this.labelFWLookup = new System.Windows.Forms.Label();
-            this.textFWLookup = new System.Windows.Forms.TextBox();
-            this.textFWPatch = new System.Windows.Forms.TextBox();
             this.labelFWPatch = new System.Windows.Forms.Label();
             this.selectFile = new System.Windows.Forms.OpenFileDialog();
             this.selectFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.labelDude = new System.Windows.Forms.Label();
             this.labelMe = new System.Windows.Forms.Label();
+            this.comboPatch = new System.Windows.Forms.ComboBox();
+            this.comboLookup = new System.Windows.Forms.ComboBox();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,36 +98,16 @@
             // labelFWLookup
             // 
             this.labelFWLookup.AutoSize = true;
-            this.labelFWLookup.Location = new System.Drawing.Point(115, 35);
+            this.labelFWLookup.Location = new System.Drawing.Point(136, 35);
             this.labelFWLookup.Name = "labelFWLookup";
             this.labelFWLookup.Size = new System.Drawing.Size(75, 13);
             this.labelFWLookup.TabIndex = 5;
             this.labelFWLookup.Text = "FW to Lookup";
             // 
-            // textFWLookup
-            // 
-            this.textFWLookup.BackColor = System.Drawing.SystemColors.WindowText;
-            this.textFWLookup.ForeColor = System.Drawing.Color.Yellow;
-            this.textFWLookup.Location = new System.Drawing.Point(12, 32);
-            this.textFWLookup.MaxLength = 8;
-            this.textFWLookup.Name = "textFWLookup";
-            this.textFWLookup.Size = new System.Drawing.Size(100, 20);
-            this.textFWLookup.TabIndex = 6;
-            // 
-            // textFWPatch
-            // 
-            this.textFWPatch.BackColor = System.Drawing.SystemColors.WindowText;
-            this.textFWPatch.ForeColor = System.Drawing.Color.Yellow;
-            this.textFWPatch.Location = new System.Drawing.Point(12, 58);
-            this.textFWPatch.MaxLength = 8;
-            this.textFWPatch.Name = "textFWPatch";
-            this.textFWPatch.Size = new System.Drawing.Size(100, 20);
-            this.textFWPatch.TabIndex = 7;
-            // 
             // labelFWPatch
             // 
             this.labelFWPatch.AutoSize = true;
-            this.labelFWPatch.Location = new System.Drawing.Point(114, 61);
+            this.labelFWPatch.Location = new System.Drawing.Point(136, 65);
             this.labelFWPatch.Name = "labelFWPatch";
             this.labelFWPatch.Size = new System.Drawing.Size(67, 13);
             this.labelFWPatch.TabIndex = 8;
@@ -150,16 +130,16 @@
             this.statusStrip1.TabIndex = 9;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // progressBar
-            // 
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(100, 16);
-            // 
             // status
             // 
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(100, 17);
             this.status.Text = "Waiting for user...";
+            // 
+            // progressBar
+            // 
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // labelDude
             // 
@@ -181,17 +161,37 @@
             this.labelMe.TabIndex = 11;
             this.labelMe.Text = "GUI @cfwprpht";
             // 
+            // comboPatch
+            // 
+            this.comboPatch.BackColor = System.Drawing.SystemColors.MenuText;
+            this.comboPatch.ForeColor = System.Drawing.Color.Yellow;
+            this.comboPatch.FormattingEnabled = true;
+            this.comboPatch.Location = new System.Drawing.Point(12, 61);
+            this.comboPatch.Name = "comboPatch";
+            this.comboPatch.Size = new System.Drawing.Size(121, 21);
+            this.comboPatch.TabIndex = 12;
+            // 
+            // comboLookup
+            // 
+            this.comboLookup.BackColor = System.Drawing.SystemColors.MenuText;
+            this.comboLookup.ForeColor = System.Drawing.Color.Yellow;
+            this.comboLookup.FormattingEnabled = true;
+            this.comboLookup.Location = new System.Drawing.Point(12, 32);
+            this.comboLookup.Name = "comboLookup";
+            this.comboLookup.Size = new System.Drawing.Size(121, 21);
+            this.comboLookup.TabIndex = 13;
+            // 
             // ElfFwPatcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 193);
+            this.Controls.Add(this.comboLookup);
+            this.Controls.Add(this.comboPatch);
             this.Controls.Add(this.labelMe);
             this.Controls.Add(this.labelDude);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.labelFWPatch);
-            this.Controls.Add(this.textFWPatch);
-            this.Controls.Add(this.textFWLookup);
             this.Controls.Add(this.labelFWLookup);
             this.Controls.Add(this.textBoxInput);
             this.Controls.Add(this.buttonSelect);
@@ -219,8 +219,6 @@
         private System.Windows.Forms.Button buttonSelect;
         private System.Windows.Forms.TextBox textBoxInput;
         private System.Windows.Forms.Label labelFWLookup;
-        private System.Windows.Forms.TextBox textFWLookup;
-        private System.Windows.Forms.TextBox textFWPatch;
         private System.Windows.Forms.Label labelFWPatch;
         private System.Windows.Forms.OpenFileDialog selectFile;
         private System.Windows.Forms.FolderBrowserDialog selectFolder;
@@ -229,6 +227,8 @@
         private System.Windows.Forms.ToolStripStatusLabel status;
         private System.Windows.Forms.Label labelDude;
         private System.Windows.Forms.Label labelMe;
+        private System.Windows.Forms.ComboBox comboPatch;
+        private System.Windows.Forms.ComboBox comboLookup;
     }
 }
 

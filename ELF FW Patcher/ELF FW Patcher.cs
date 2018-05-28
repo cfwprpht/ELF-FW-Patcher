@@ -12,6 +12,8 @@ namespace ELF_FW_Patcher {
         /// </summary>
         private string[] files;
 
+        private string[] sdk_versions = { "03508031", "04508111", };
+
         /// <summary>
         /// Instance Initializer.
         /// </summary>
@@ -38,7 +40,11 @@ namespace ELF_FW_Patcher {
         /// </summary>
         /// <param name="sender">The Sender.</param>
         /// <param name="e">The Evnet Arguments.</param>
-        private void ElfFwPatcher_Load(object sender, EventArgs e) { status.Text = "Welcome !"; }
+        private void ElfFwPatcher_Load(object sender, EventArgs e) {
+            status.Text = "Welcome !";
+            comboLookup.Items.AddRange(sdk_versions);
+            comboPatch.Items.AddRange(sdk_versions);
+        }
 
         /// <summary>
         /// On Button Select Click do.
@@ -76,12 +82,14 @@ namespace ELF_FW_Patcher {
         /// <param name="e">The Evnet Arguments.</param>
         private void ButtonPatch_Click(object sender, EventArgs e) {
             Application.DoEvents();
-            if (textFWLookup.Text != string.Empty) {
-                if (textFWPatch.Text != string.Empty) {
-                    if (textFWLookup.Text.Length == 8) {
-                        if (textFWPatch.Text.Length == 8) {
-                            if (textFWLookup.Text.IsHex()) {
-                                if (textFWPatch.Text.IsHex()) {
+            if (comboLookup.SelectedIndex >= 0) {
+                if (comboPatch.SelectedIndex >= 0) {
+                    string lookup = comboLookup.Items[comboLookup.SelectedIndex].ToString();
+                    string patch = comboPatch.Items[comboPatch.SelectedIndex].ToString();
+                    if (lookup.Length == 8) {
+                        if (patch.Length == 8) {
+                            if (lookup.IsHex()) {
+                                if (patch.IsHex()) {
                                     if (files.Length > 0) {
                                         int patched = 0;
                                         try {
@@ -92,8 +100,8 @@ namespace ELF_FW_Patcher {
                                             byte[] toLookup = new byte[4];
                                             byte[] toPatch = new byte[4];
                                             byte[] check = new byte[4];
-                                            toLookup = textFWLookup.Text.EndianSwapp().HexStringToBytes();
-                                            toPatch = textFWPatch.Text.EndianSwapp().HexStringToBytes();
+                                            toLookup = lookup.EndianSwapp().HexStringToBytes();
+                                            toPatch = patch.EndianSwapp().HexStringToBytes();
                                             for (int i = 0; i < files.Length; i++) {
                                                 if (File.Exists(files[i])) {
                                                     if (IsElfDecrypted(files[i])) {
